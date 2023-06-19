@@ -11,6 +11,10 @@ import type { VercelRequest, VercelResponse } from '@vercel/node'
   * @param {string} category - The website category
 */
 export default async (request: VercelRequest, response: VercelResponse) => {
+  if (request.method === 'OPTIONS') {
+    return response.status(200).end()
+  }
+  
   const { token = '', sheetId = '' } = request.query
   const { link = '', name = '', icon = '', desc = '', category = '' } = request.body
 

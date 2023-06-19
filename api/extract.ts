@@ -6,6 +6,10 @@ import type { VercelRequest, VercelResponse } from '@vercel/node'
   * @param {string} link - The link to extract metadata from
 */
 export default async (request: VercelRequest, response: VercelResponse) => {
+  if (request.method === 'OPTIONS') {
+    return response.status(200).end()
+  }
+
   const { link = '' } = request.body
   const { token = '' } = request.query
 
