@@ -106,9 +106,9 @@ console.log(result); // output log: Done
 
 ## Help Document
 
-[Serverless Functions Quickstart](https://vercel.com/docs/concepts/functions/serverless-functions/quickstart)
+[Vercel functions using environment variables](https://vercel.com/docs/concepts/functions/serverless-functions/quickstart#using-environment-variables)
 
-[How to use Google sheet as your database with Node.js](https://medium.com/@sakkeerhussainp/google-sheet-as-your-database-for-node-js-backend-a79fc5a6edd9)
+[Create Google Cloud platform credentials keyFile](https://medium.com/@sakkeerhussainp/google-sheet-as-your-database-for-node-js-backend-a79fc5a6edd9)
 
 ## License
 
