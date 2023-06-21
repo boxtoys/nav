@@ -1,22 +1,17 @@
 {
-  "name": "nav-server",
+  "name": "nav",
+  "private": true,
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/boxtoys/nav-server.git"
+    "url": "git+https://github.com/boxtoys/nav.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "2046",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/boxtoys/nav-server/issues"
+    "url": "https://github.com/boxtoys/nav/issues"
   },
-  "homepage": "https://github.com/boxtoys/nav-server#readme",
+  "homepage": "https://github.com/boxtoys/nav#readme",
   "dependencies": {
     "@vercel/node": "^2.15.1",
     "googleapis": "^118.0.0",
