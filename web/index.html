@@ -167,7 +167,7 @@
 
     .search {
       display: flex;
-      width: 614px;
+      max-width: 614px;
       height: 50px;
       align-items: center;
       margin: 0 auto 69px;
@@ -192,12 +192,15 @@
   </style>
   <style>
     .links {
-      padding-bottom: 64px;
+      padding-bottom: 40px;
     }
 
     .links h3 {
       padding-bottom: 24px;
       color: #000;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       font: 600 24px/32px Poppins;
     }
 
@@ -205,6 +208,7 @@
       display: grid;
       gap: 24px;
       grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+      padding-bottom: 24px;
     }
 
     .links ul li {
@@ -231,6 +235,10 @@
     .links .logo {
       width: 44px;
       height: 44px;
+      max-width: 44px;
+      max-height: 44px;
+      min-width: 44px;
+      min-height: 44px;
       margin-right: 16px;
     }
 
@@ -254,15 +262,23 @@
 
     .links .info {
       display: flex;
+      overflow: hidden;
       flex-direction: column;
       justify-content: space-between;
     }
 
     .links .info .name {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       font: 700 16px/24px Poppins;
     }
 
     .links .info .link {
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       font: 400 12px/18px Poppins;
     }
 
