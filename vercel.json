@@ -11,7 +11,8 @@
     }
   ],
   "rewrites": [
-    { "source": "/", "destination": "/web/index.html" },
+    { "source": "/dev", "destination": "/web/index.html" },
+    { "source": "/", "destination": "/web/index.min.html" },
     { "source": "/assets/(.*)", "destination": "/web/assets/$1" }
   ]
 }
