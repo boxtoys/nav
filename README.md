@@ -101,7 +101,7 @@ const result = await axios
     console.log(res.data);
   });
 
-console.log(result); // output log: Done
+console.log(result); // response status: 200
 ```
 
 ## Help Document
