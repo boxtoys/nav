@@ -10,8 +10,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     return response.status(200).end()
   }
 
-  const { link = '' } = request.body
-  const { token = '' } = request.query
+  const { link = '', token = '' } = request.body
 
   if (token !== process.env.TOKEN) {
     return response.status(401).send('Unauthorized')

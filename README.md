@@ -1,4 +1,4 @@
-# Navigation Website<sup>BackEnd</sup>
+# Navigation Website
 
 A small navigation website.
 

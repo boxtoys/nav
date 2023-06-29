@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/wc-message@latest/dist/index.js"></script>
   <style>
     html {
       background-color: #FAFAFA;
@@ -368,6 +369,10 @@
       margin-bottom: 10px;
     }
 
+    .dialog .field.hidden {
+      display: none;
+    }
+
     .dialog .field .label {
       margin-bottom: 4px;
       color: #24292F;
@@ -426,13 +431,18 @@
       background-color: #94D3A2;
       box-shadow: 0px 1px 0px 0px rgba(27, 31, 35, 0.10);
     }
+
+    #message {
+      position: absolute;
+      z-index: 10003;
+    }
   </style>
 </head>
 <body>
   <header>
     <img class="logo" src="data:image/png;base64,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" />
     <section class="opers">
-      <div class="add">
+      <div class="add J_add">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M7.05 9.879L4.222 12.707C3.80413 13.1249 3.47266 13.6209 3.24651 14.1669C3.02036 14.7129 2.90396 15.298 2.90396 15.889C2.90396 16.48 3.02036 17.0651 3.24651 17.6111C3.47266 18.1571 3.80413 18.6531 4.222 19.071L4.929 19.778C5.3468 20.196 5.84286 20.5276 6.38883 20.7538C6.93481 20.98 7.52001 21.0965 8.111 21.0965C8.70199 21.0965 9.28719 20.98 9.83317 20.7538C10.3791 20.5276 10.8752 20.196 11.293 19.778L14.121 16.95C14.2121 16.8557 14.2625 16.7294 14.2613 16.5983C14.2602 16.4672 14.2076 16.3418 14.1149 16.2491C14.0222 16.1564 13.8968 16.1038 13.7657 16.1027C13.6346 16.1015 13.5083 16.1519 13.414 16.243L10.586 19.071C9.92922 19.7267 9.03908 20.095 8.111 20.095C7.18292 20.095 6.29278 19.7267 5.636 19.071L4.929 18.364C4.27304 17.7074 3.90458 16.8172 3.90458 15.889C3.90458 14.9608 4.27304 14.0706 4.929 13.414L7.757 10.586C7.84808 10.4917 7.89848 10.3654 7.89734 10.2343C7.8962 10.1032 7.84361 9.9778 7.75091 9.88509C7.65821 9.79239 7.5328 9.7398 7.4017 9.73867C7.2706 9.73753 7.1443 9.78792 7.05 9.879ZM16.95 14.121L19.778 11.293C20.1959 10.8751 20.5273 10.3791 20.7535 9.83309C20.9796 9.28712 21.096 8.70196 21.096 8.111C21.096 7.52005 20.9796 6.93488 20.7535 6.38891C20.5273 5.84295 20.1959 5.34687 19.778 4.929L19.071 4.222C18.6532 3.80401 18.1571 3.47244 17.6112 3.24621C17.0652 3.01999 16.48 2.90355 15.889 2.90355C15.298 2.90355 14.7128 3.01999 14.1668 3.24621C13.6209 3.47244 13.1248 3.80401 12.707 4.222L9.879 7.05C9.78792 7.1443 9.73752 7.2706 9.73866 7.4017C9.7398 7.5328 9.79239 7.65821 9.88509 7.75091C9.97779 7.84362 10.1032 7.8962 10.2343 7.89734C10.3654 7.89848 10.4917 7.84808 10.586 7.757L13.414 4.929C14.0708 4.27328 14.9609 3.90499 15.889 3.90499C16.8171 3.90499 17.7072 4.27328 18.364 4.929L19.071 5.636C19.727 6.29265 20.0954 7.18285 20.0954 8.111C20.0954 9.03916 19.727 9.92936 19.071 10.586L16.243 13.414C16.1519 13.5083 16.1015 13.6346 16.1027 13.7657C16.1038 13.8968 16.1564 14.0222 16.2491 14.1149C16.3418 14.2076 16.4672 14.2602 16.5983 14.2613C16.7294 14.2625 16.8557 14.2121 16.95 14.121Z" fill="#CCCCCC"/>
           <path d="M8.818 15.889L15.889 8.81801C15.9801 8.7237 16.0305 8.5974 16.0293 8.4663C16.0282 8.33521 15.9756 8.2098 15.8829 8.1171C15.7902 8.02439 15.6648 7.97181 15.5337 7.97067C15.4026 7.96953 15.2763 8.01993 15.182 8.11101L8.111 15.182C8.01992 15.2763 7.96952 15.4026 7.97066 15.5337C7.9718 15.6648 8.02439 15.7902 8.11709 15.8829C8.20979 15.9756 8.3352 16.0282 8.4663 16.0293C8.5974 16.0305 8.7237 15.9801 8.818 15.889Z" fill="#CCCCCC"/>
@@ -600,20 +610,91 @@
         </div>
       </section>
       <section class="box-footer">
-        <button type="submit" class="J_setting_submit">Button</button>
+        <button type="submit" class="J_setting_submit">Save</button>
       </section>
     </div>
   </div>
+  <div class="dialog J_add_dialog">
+    <div class="box">
+      <section class="box-header">
+        <div class="title">Add Website</div>
+        <div class="close">
+          <svg height="16" viewBox="0 0 16 16" version="1.1" width="16">
+            <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
+          </svg>
+        </div>
+      </section>
+      <section class="box-body">
+        <div class="field">
+          <div class="label">Link</div>
+          <input type="text" class="J_add_link">
+        </div>
+        <div class="field hidden">
+          <div class="label">Name</div>
+          <input type="text" class="J_add_name">
+        </div>
+        <div class="field hidden">
+          <div class="label">Icon</div>
+          <input type="text" class="J_add_icon">
+        </div>
+        <div class="field hidden">
+          <div class="label">Description</div>
+          <input type="text" class="J_add_description">
+        </div>
+        <div class="field hidden">
+          <div class="label">Category</div>
+          <input type="text" class="J_add_category">
+        </div>
+      </section>
+      <section class="box-footer">
+        <button type="submit" class="J_add_submit">Parse</button>
+      </section>
+    </div>
+  </div>
+  <wc-message id="message"></wc-message>
   <script>
     (function() {
-      let token = ''
-      let sheetId = ''
+      let token = localStorage.getItem('NAV_REQUEST_TOKEN') || ''
+      let sheetId = localStorage.getItem('NAV_REQUEST_SHEET_ID') || ''
 
       initSearch()
       initSetting()
+      initAddWebsite()
 
       function $(selector) {
         return document.querySelector(selector)
+      }
+
+      function request(method, url, data) {
+        return new Promise(function(resolve, reject) {
+          const xhr = new XMLHttpRequest()
+
+          xhr.open(method, url, true)
+          xhr.setRequestHeader('Content-Type', 'application/json')
+
+          xhr.onload = function() {
+            if (this.status >= 200 && this.status < 300) {
+              resolve(xhr.response ? JSON.parse(xhr.response) : '')
+            } else {
+              reject(new Error(xhr.statusText))
+            }
+          }
+
+          xhr.onerror = function() {
+            reject(new Error(xhr.statusText))
+          }
+
+          xhr.send(JSON.stringify(data))
+        })
+      }
+
+      function toast(text) {
+        const element = document.querySelector('#message')
+
+        element.textContent = text || ''
+        element.duration = 1000
+        element.type = 'error'
+        element.show = true
       }
 
       function initSearch() {
@@ -682,6 +763,143 @@
             settingDialogSubmitElement.removeAttribute('disabled')
           } else {
             settingDialogSubmitElement.setAttribute('disabled', 'disabled')
+          }
+        }
+      }
+
+      function initAddWebsite() {
+        let step = 1
+        let link = ''
+        let name = ''
+        let icon = ''
+        let desc = ''
+        let category = ''
+        const addElement = $('.J_add')
+        const addDialogElement = $('.J_add_dialog')
+        const addDialogLinkElement = $('.J_add_link')
+        const addDialogNameElement = $('.J_add_name')
+        const addDialogIconElement = $('.J_add_icon')
+        const addDialogSubmitElement = $('.J_add_submit')
+        const addDialogCategoryElement = $('.J_add_category')
+        const addDialogCloseElement = $('.J_add_dialog .close')
+        const addDialogDescriptionElement = $('.J_add_description')
+
+        addElement.addEventListener('click', function() {
+          addDialogElement.classList.add('open')
+
+          refreshSubmitElementState()
+        })
+
+        addDialogCloseElement.addEventListener('click', function() {
+          step = 1
+          addDialogLinkElement.value = ''
+          addDialogNameElement.value = ''
+          addDialogIconElement.value = ''
+          addDialogCategoryElement.value = ''
+          addDialogDescriptionElement.value = ''
+          addDialogElement.classList.remove('open')
+          addDialogSubmitElement.textContent = 'Parse'
+          addDialogNameElement.parentElement.classList.add('hidden')
+          addDialogIconElement.parentElement.classList.add('hidden')
+          addDialogCategoryElement.parentElement.classList.add('hidden')
+          addDialogDescriptionElement.parentElement.classList.add('hidden')
+        })
+
+        addDialogLinkElement.addEventListener('input', function() {
+          link = addDialogLinkElement.value.trim()
+          refreshSubmitElementState()
+        })
+
+        addDialogNameElement.addEventListener('input', function() {
+          name = addDialogNameElement.value.trim()
+          refreshSubmitElementState()
+        })
+        
+        addDialogIconElement.addEventListener('input', function() {
+          icon = addDialogIconElement.value.trim()
+          refreshSubmitElementState()
+        })
+
+        addDialogDescriptionElement.addEventListener('input', function() {
+          desc = addDialogDescriptionElement.value.trim()
+        })
+
+        addDialogCategoryElement.addEventListener('input', function() {
+          category = addDialogCategoryElement.value.trim()
+        })
+
+        addDialogSubmitElement.addEventListener('click', function() {
+          if (step === 1 && link) {
+            addDialogSubmitElement.textContent = 'Parseing'
+            addDialogSubmitElement.setAttribute('disabled', 'disabled')
+
+            request('POST', '/api/extract', { link, token })
+              .then(res => {
+                step = 2
+                name = addDialogNameElement.value = res.name || ''
+                icon = addDialogIconElement.value = res.icon || ''
+                desc = addDialogDescriptionElement.value = res.desc || ''
+
+                addDialogNameElement.parentElement.classList.remove('hidden')
+                addDialogIconElement.parentElement.classList.remove('hidden')
+                addDialogCategoryElement.parentElement.classList.remove('hidden')
+                addDialogDescriptionElement.parentElement.classList.remove('hidden')
+
+                addDialogSubmitElement.textContent = 'Submit'
+                addDialogSubmitElement.removeAttribute('disabled')
+              })
+              .catch(err => {
+                toast(err.message)
+                addDialogSubmitElement.textContent = 'Parse'
+                addDialogSubmitElement.removeAttribute('disabled')
+              })
+
+            return
+          }
+
+          if (step === 2 && link && name && icon) {
+            addDialogSubmitElement.setAttribute('disabled', 'disabled')
+
+            request('POST', '/api/add', { sheetId, token, link, name, icon, desc, category })
+              .then(res => {
+                step = 1
+                addDialogLinkElement.value = ''
+                addDialogNameElement.value = ''
+                addDialogIconElement.value = ''
+                addDialogCategoryElement.value = ''
+                addDialogDescriptionElement.value = ''
+                addDialogElement.classList.remove('open')
+                addDialogSubmitElement.textContent = 'Parse'
+                addDialogNameElement.parentElement.classList.add('hidden')
+                addDialogIconElement.parentElement.classList.add('hidden')
+                addDialogCategoryElement.parentElement.classList.add('hidden')
+                addDialogDescriptionElement.parentElement.classList.add('hidden')
+                addDialogSubmitElement.removeAttribute('disabled')
+              })
+              .catch(err => {
+                toast(err.message)
+                addDialogSubmitElement.removeAttribute('disabled')
+              })
+          }
+        })
+
+        function refreshSubmitElementState() {
+          if (step === 1) {
+            if (link) {
+              addDialogSubmitElement.removeAttribute('disabled')
+            } else {
+              addDialogSubmitElement.setAttribute('disabled', 'disabled')
+            }
+
+            return
+          }
+
+          if (step === 2) {
+            if (link && name && icon) {
+              addDialogSubmitElement.removeAttribute('disabled')
+            } else {
+              addDialogSubmitElement.setAttribute('disabled', 'disabled')
+            }
           }
         }
       }

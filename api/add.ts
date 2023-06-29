@@ -15,8 +15,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     return response.status(200).end()
   }
   
-  const { token = '', sheetId = '' } = request.query
-  const { link = '', name = '', icon = '', desc = '', category = '' } = request.body
+  const { token = '', sheetId = '', link = '', name = '', icon = '', desc = '', category = '' } = request.body
 
   if (token !== process.env.TOKEN) {
     return response.status(401).send('Unauthorized')
@@ -41,7 +40,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       requestBody: { values: [[name, icon, desc, link, category]] }
     })
 
-    response.status(200).send('done')
+    response.status(200).end()
   } catch (err) {
     response.status(500).send(`Internal Server Error (${err.message})`)
   }
