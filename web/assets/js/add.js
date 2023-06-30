@@ -5,6 +5,7 @@
     name: '',
     icon: '',
     desc: '',
+    round: '0',
     category: ''
   }
 
@@ -17,6 +18,7 @@
   const addDialogBoxElement = utils.$('.J_add_dialog .box')
   const addDialogCategoryElement = utils.$('.J_add_category')
   const addDialogCloseElement = utils.$('.J_add_dialog .close')
+  const addDialogIconRoundElement = utils.$('.J_add_icon_round')
   const addDialogDescriptionElement = utils.$('.J_add_description')
 
   addElement.addEventListener('click', function() {
@@ -57,6 +59,7 @@
     params.icon = addDialogIconElement.value.trim()
 
     refreshSubmitElementState()
+    refreshIconElementState()
   })
 
   addDialogDescriptionElement.addEventListener('input', function() {
@@ -65,6 +68,10 @@
 
   addDialogCategoryElement.addEventListener('input', function() {
     params.category = addDialogCategoryElement.value.trim()
+  })
+
+  addDialogIconRoundElement.addEventListener('change', function() {
+    params.round = addDialogIconRoundElement.value
   })
 
   addDialogSubmitElement.addEventListener('click', function() {
@@ -84,6 +91,7 @@
           addDialogNameElement.parentElement.classList.remove('hidden')
           addDialogIconElement.parentElement.classList.remove('hidden')
           addDialogCategoryElement.parentElement.classList.remove('hidden')
+          addDialogIconRoundElement.parentElement.classList.remove('hidden')
           addDialogDescriptionElement.parentElement.classList.remove('hidden')
 
           addDialogSubmitElement.textContent = 'Submit'
@@ -97,6 +105,7 @@
     }
 
     if (step === 2 && params.link && params.name && params.icon) {
+      params.round = parseInt(params.round, 10)
       addDialogSubmitElement.setAttribute('disabled', 'disabled')
 
       return utils.request('POST', '/api/add', Object.assign({}, params, { token: VARS.token, sheetId: VARS.sheetId }))
@@ -147,6 +156,7 @@
       name: '',
       icon: '',
       desc: '',
+      round: '0',
       category: ''
     }
     addDialogLinkElement.value = ''
@@ -158,6 +168,7 @@
     addDialogNameElement.parentElement.classList.add('hidden')
     addDialogIconElement.parentElement.classList.add('hidden')
     addDialogCategoryElement.parentElement.classList.add('hidden')
+    addDialogIconRoundElement.parentElement.classList.add('hidden')
     addDialogDescriptionElement.parentElement.classList.add('hidden')
     addDialogElement.querySelector('.box-body').classList.add('off')
   }
@@ -169,6 +180,14 @@
       addDialogSubmitElement.removeAttribute('disabled')
     } else {
       addDialogSubmitElement.setAttribute('disabled', 'disabled')
+    }
+  }
+
+  function refreshIconElementState() {
+    if (params.icon) {
+      addDialogIconRoundElement.removeAttribute('disabled')
+    } else {
+      addDialogIconRoundElement.setAttribute('disabled', 'disabled')
     }
   }
 })();

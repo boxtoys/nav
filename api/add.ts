@@ -15,7 +15,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     return response.status(200).end()
   }
   
-  const { token = '', sheetId = '', link = '', name = '', icon = '', desc = '', category = '' } = request.body
+  const { token = '', sheetId = '', link = '', name = '', icon = '', desc = '', category = '', round = 0 } = request.body
 
   if (token !== process.env.TOKEN) {
     return response.status(401).send('Unauthorized')
@@ -37,7 +37,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
       range: `Sheet1`,
       valueInputOption: 'USER_ENTERED',
       spreadsheetId: sheetId as string,
-      requestBody: { values: [[name, icon, desc, link, category]] }
+      requestBody: { values: [[name, icon, desc, link, category, round]] }
     })
 
     response.status(200).end()

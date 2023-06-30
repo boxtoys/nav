@@ -70,7 +70,7 @@
 }
 
 .dialog .box-body.add {
-  height: 364px;
+  height: 431px;
 }
 
 .dialog .box-body.off {
@@ -109,6 +109,37 @@
 }
 
 .dialog .field input[disabled] {
+  border-color: #D0D7DE;
+  background-color: rgba(175, 184, 193, 0.20);
+}
+
+.dialog .field select {
+  width: 100%;
+  height: 32px;
+  padding: 5px 24px 5px 12px;
+  color: rgb(31, 35, 40);
+  font-size: 14px;
+  line-height: 20px;
+  vertical-align: middle;
+  border-radius: 6px;
+  border: 1px solid rgb(208, 215, 222);
+  background-color: #fff;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0iIzU4NjA2OSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNC40MjcgOS40MjdsMy4zOTYgMy4zOTZhLjI1MS4yNTEgMCAwMC4zNTQgMGwzLjM5Ni0zLjM5NkEuMjUuMjUgMCAwMDExLjM5NiA5SDQuNjA0YS4yNS4yNSAwIDAwLS4xNzcuNDI3ek00LjQyMyA2LjQ3TDcuODIgMy4wNzJhLjI1LjI1IDAgMDEuMzU0IDBMMTEuNTcgNi40N2EuMjUuMjUgMCAwMS0uMTc3LjQyN0g0LjZhLjI1LjI1IDAgMDEtLjE3Ny0uNDI3eiIgLz48L3N2Zz4=");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  background-size: 16px;
+  box-shadow: inset 0px 1px 0px 0px rgba(208, 215, 222, 0.2);
+  appearance: none;
+  transition: 80ms cubic-bezier(0.33, 1, 0.68, 1);
+  transition-property: color, background-color, box-shadow, border-color;
+}
+
+.dialog .field select:focus-visible {
+  border-color: rgb(9, 105, 218);
+  box-shadow: inset 0 0 0 1px rgb(9, 105, 218);
+}
+
+.dialog .field select[disabled] {
   border-color: #D0D7DE;
   background-color: rgba(175, 184, 193, 0.20);
 }
