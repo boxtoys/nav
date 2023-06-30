@@ -27,7 +27,7 @@
       const categoryName = key !== 'nil' ? '<h3 title="'.concat(key, '">').concat(key, '</h3>') : ''
 
       const list = data[key].reduce(function (prev, curr) {
-        return prev + tpl.replace('{name}', curr.name).replace('{icon}', curr.icon).replace('{desc}', curr.desc).replace('{link}', curr.link.replace(/(https?:\/\/)/g, '')).replace('{url}', curr.link)
+        return prev + tpl.replace('{name}', curr.name).replace('{icon}', curr.icon).replace('{desc}', curr.desc).replace('{link}', curr.link.replace(/(https?:\/\/)/g, '')).replace('{url}', curr.link).replace('{round}', curr.round === 1 ? 'round' : '')
       }, '')
 
       return categoryName + '<ul>' + list + '</ul>'
