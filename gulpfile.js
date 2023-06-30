@@ -1,9 +1,13 @@
 const gulp = require('gulp')
 const rename = require('gulp-rename')
 const htmlmin = require('gulp-htmlmin')
+const inlineSource = require('gulp-inline-source')
 
 function minify() {
   return gulp.src('web/index.html')
+    .pipe(inlineSource({
+      compress: false
+    }))
     .pipe(htmlmin({
       minifyJS: true,
       minifyCSS: true,
