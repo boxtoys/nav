@@ -180,6 +180,7 @@
     addDialogNameElement.value = ''
     addDialogIconElement.value = ''
     addDialogCategoryElement.value = ''
+    addDialogIconRoundElement.value = '0'
     addDialogDescriptionElement.value = ''
     addDialogSubmitElement.textContent = 'Parse'
     addDialogNameElement.parentElement.classList.add('hidden')
