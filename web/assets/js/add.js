@@ -101,8 +101,8 @@
 
       return utils.request('POST', '/api/add', Object.assign({}, params, { token: VARS.token, sheetId: VARS.sheetId }))
         .then(function() {
+          render(params)
           VARS.list.push(params)
-          document.querySelector('.links').innerHTML = utils.render(VARS.list)
 
           reset()
           addDialogElement.classList.remove('open')
@@ -114,6 +114,31 @@
         })
     }
   })
+
+  function render(data) {
+    const linksElement = utils.$('.links')
+    const tpl = document.querySelector('#listTemplate').textContent.trim()
+    const html = tpl.replace('{name}', data.name).replace('{icon}', data.icon).replace('{desc}', data.desc).replace('{link}', data.link).replace('{url}', data.link)
+
+    if (data.category) {
+      let categoryElement = document.querySelector('h3[title='.concat(data.category, ']'))
+
+      if (categoryElement) {
+        categoryElement.nextElementSibling.appendChild(utils.htmlToDom(html))
+      } else {
+        linksElement.appendChild(utils.htmlToDom('<h3 title="'.concat(data.category, '">').concat(data.category, '</h3>')))
+        linksElement.appendChild(utils.htmlToDom('<ul>'.concat(html, '</ul>')))
+      }
+    } else {
+      const el = linksElement.firstElementChild
+
+      if (el.tagName.toUpperCase() === 'UL') {
+        el.appendChild(utils.htmlToDom(html))
+      } else {
+        linksElement.insertBefore(utils.htmlToDom('<ul>'.concat(html, '</ul>')), linksElement.firstElementChild)
+      }
+    }
+  }
 
   function reset() {
     step = 1
