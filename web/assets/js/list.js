@@ -1,6 +1,10 @@
 (function() {
   const url = '/api/list?sheetId={sheetId}&token={token}'.replace('{sheetId}', VARS.sheetId).replace('{token}', VARS.token)
 
+  if (VARS.sheetId && VARS.token) {
+    return
+  }
+
   utils.request('GET', url)
     .then(function (res) {
       if (res.length !== 0) {
