@@ -1,20 +1,22 @@
 (function() {
-  const url = '/api/list?sheetId={sheetId}&token={token}'.replace('{sheetId}', VARS.sheetId).replace('{token}', VARS.token)
-
-  if (!VARS.sheetId || !VARS.token) {
-    return
+  if (VARS.sheetId && VARS.token) {
+    getList()
   }
 
-  utils.request('GET', url)
-    .then(function (res) {
-      if (res.length !== 0) {
-        VARS.list = res
-        utils.$('.links').innerHTML = render(res)
-      }
-    })
-    .catch(function (err) {
-      utils.toast(err.message)
-    })
+  function getList() {
+    const url = '/api/list?sheetId={sheetId}&token={token}'.replace('{sheetId}', VARS.sheetId).replace('{token}', VARS.token)
+
+    utils.request('GET', url)
+      .then(function (res) {
+        if (res.length !== 0) {
+          VARS.list = res
+          utils.$('.links').innerHTML = render(res)
+        }
+      })
+      .catch(function (err) {
+        utils.toast(err.message)
+      })
+  }
 
   function render(data) {
     const tpl = document.querySelector('#listTemplate').textContent.trim()
@@ -25,7 +27,7 @@
       const categoryName = key !== 'nil' ? '<h3 title="'.concat(key, '">').concat(key, '</h3>') : ''
 
       const list = data[key].reduce(function (prev, curr) {
-        return prev + tpl.replace('{name}', curr.name).replace('{icon}', curr.icon).replace('{desc}', curr.desc).replace('{link}', curr.link).replace('{url}', curr.link)
+        return prev + tpl.replace('{name}', curr.name).replace('{icon}', curr.icon).replace('{desc}', curr.desc).replace('{link}', curr.link.replace(/(https?:\/\/)/g, '')).replace('{url}', curr.link)
       }, '')
 
       return categoryName + '<ul>' + list + '</ul>'
@@ -47,4 +49,6 @@
       return prev
     }, {})
   }
+
+  window.refreshList = getList
 })();

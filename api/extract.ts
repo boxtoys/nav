@@ -20,8 +20,14 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     return response.status(400).send('Missing link')
   }
 
+  const data = await getLinkMetadata(link as string)
+
+  if (data.icon && data.icon.indexOf('http') === -1) {
+    data.icon = link.indexOf('https') !== -1 ? data.icon.replace(/^\/\//, 'https://') : data.icon.replace(/^\/\//, 'http://')
+  }
+
   try {
-    response.status(200).send(await getLinkMetadata(link as string))
+    response.status(200).send(data)
   } catch (err) {
     response.status(500).send(`Internal Server Error (${err.message})`)
   }

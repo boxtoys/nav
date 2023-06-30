@@ -49,6 +49,7 @@
       return
     }
 
+    window.refreshList()
     localStorage.setItem('NAV_REQUEST_TOKEN', VARS.token)
     localStorage.setItem('NAV_REQUEST_SHEET_ID', VARS.sheetId)
     settingDialogElement.classList.remove('open')
