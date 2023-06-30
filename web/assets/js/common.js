@@ -1,5 +1,6 @@
-(function() {
+  (function() {
   const VARS = {
+    list: [],
     token: localStorage.getItem('NAV_REQUEST_TOKEN') || '',
     sheetId: localStorage.getItem('NAV_REQUEST_SHEET_ID') || ''
   }
@@ -26,8 +27,8 @@
         xhr.onerror = function() {
           reject(new Error(xhr.statusText))
         }
-  
-        xhr.send(JSON.stringify(data))
+
+        xhr.send(data ?JSON.stringify(data) : null)
       })
     },
     toast: function(text) {
@@ -37,7 +38,38 @@
       element.duration = 1000
       element.type = 'error'
       element.show = true
+    },
+    render: function(data) {
+      data = normalize(data)
+      
+      const tpl = document.querySelector('#listTemplate').textContent.trim()
+
+      return Object.keys(data).map(function (key) {
+        const categoryName = key !== 'nil' ? '<h3>' + key + '</h3>' : ''
+
+        const list = data[key].reduce(function (prev, curr) {
+          return prev + tpl.replace('{name}', curr.name).replace('{icon}', curr.icon).replace('{desc}', curr.desc).replace('{link}', curr.link).replace('{url}', curr.link)
+        }, '')
+
+        return categoryName + '<ul>' + list + '</ul>'
+      }).join('')
     }
+  }
+
+  function normalize(data) {
+    return data.reduce(function (prev, curr) {
+      if (!curr.category) {
+        curr.category = 'nil'
+      }
+
+      if (!prev[curr.category]) {
+        prev[curr.category] = []
+      }
+
+      prev[curr.category].push(curr)
+
+      return prev
+    }, {})
   }
 
   window.VARS = VARS

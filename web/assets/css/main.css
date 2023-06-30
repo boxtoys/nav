@@ -110,6 +110,7 @@ main {
 }
 
 .links .info .name {
+  color: #000;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -118,6 +119,7 @@ main {
 
 .links .info .link {
   flex: 1;
+  color: #000;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -125,6 +127,7 @@ main {
 }
 
 .links .description {
+  color: #000;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

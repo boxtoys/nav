@@ -101,8 +101,10 @@
 
       return utils.request('POST', '/api/add', Object.assign({}, params, { token: VARS.token, sheetId: VARS.sheetId }))
         .then(function() {
-          reset()
+          VARS.list.push(params)
+          document.querySelector('.links').innerHTML = utils.render(VARS.list)
 
+          reset()
           addDialogElement.classList.remove('open')
           addDialogSubmitElement.removeAttribute('disabled')
         })
