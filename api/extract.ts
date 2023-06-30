@@ -1,3 +1,4 @@
+import http from 'http'
 import https from 'https'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 
@@ -39,8 +40,14 @@ function getLinkMetadata(link: string) {
     icon?: string
     desc?: string
   }>((resolve, reject) => {
-    https.get(link, (resp) => {
+    const client = link.startsWith('https') ? https : http
+
+    client.get(link, (resp) => {
       let data = ''
+
+      if (resp.statusCode === 301 || resp.statusCode === 302) {
+        return getLinkMetadata(resp.headers.location as string).then(resolve).catch(reject)
+      }
   
       resp.on('data', (chunk) => data += chunk)
       resp.on('end', () => {
