@@ -23,10 +23,6 @@ export default async (request: VercelRequest, response: VercelResponse) => {
 
   const data = await getLinkMetadata(link as string)
 
-  if (data.icon && data.icon.indexOf('http') === -1) {
-    data.icon = link.indexOf('https') !== -1 ? data.icon.replace(/^\/\//, 'https://') : data.icon.replace(/^\/\//, 'http://')
-  }
-
   try {
     response.status(200).send(data)
   } catch (err) {
@@ -51,10 +47,25 @@ function getLinkMetadata(link: string) {
   
       resp.on('data', (chunk) => data += chunk)
       resp.on('end', () => {
+        let icon = ''
+        const matches = data.match(/<link[^>]+rel=["'](?:shortcut )?icon["'][^>]*>/gi)
+
+        if (matches && matches.length > 0) {
+          const icons = matches.map((item) => {
+            const urlMatch = item.match(/href=["']([^"']+)["']/i)
+
+            return urlMatch && urlMatch.length >= 2 ? urlMatch[1] : ''
+          })
+
+          if (icons[0]) {
+            icon = new URL(icons[0], link).href
+          }
+        }
+        
         resolve({
+          icon,
           name: data.match(/<title>(.*?)<\/title>/)?.[1] || '',
-          icon: data.match(/<link rel="shortcut icon" href="(.*?)"/)?.[1] || '',
-          desc: data.match(/<meta name="description" content="(.*?)"/)?.[1] || ''
+          desc: data.match(/<meta\s+name="description"\s+content="([^"]+)"\s*\/?>/i)?.[1] || ''
         })
       })
     }).on('error', (err) => reject(err))
