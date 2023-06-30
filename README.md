@@ -29,6 +29,12 @@ Environment variables required by the project.
 - Recommended `TOKEN` env is generated use `crypto.randomBytes(16).toString('hex')`
 - Environment variables are best added using the vercel client, use the Web UI can be problematic
 
+## WebUI Operation
+
+1. Click the setting button to fill in `SheetID` & `Token` field.
+2. Click the Add Link button to add website infomation.
+3. Start your navigation website.
+
 ## APIs
 
 ### {domain}/api/list ![get](https://img.shields.io/badge/HTTP-GET-orange)
