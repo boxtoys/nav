@@ -5,9 +5,9 @@
 
   function getList() {
     const url = '/api/list?sheetId={sheetId}&token={token}'.replace('{sheetId}', VARS.sheetId).replace('{token}', VARS.token)
-    let [promise] = utils.request('GET', url)
+    let result = utils.request('GET', url)
 
-    promise.then(function (res) {
+    result[0].then(function (res) {
       if (res.length !== 0) {
         VARS.list = res
         utils.$('.links').innerHTML = render(res)

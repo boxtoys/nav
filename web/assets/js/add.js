@@ -80,7 +80,9 @@
       addDialogSubmitElement.textContent = 'Parseing'
       addDialogSubmitElement.setAttribute('disabled', 'disabled')
 
-      let [promise, cancel] = utils.request('POST', '/api/extract', { link: params.link, token: VARS.token })
+      let result = utils.request('POST', '/api/extract', { link: params.link, token: VARS.token })
+      let promise = result[0]
+      let cancel = result[1]
 
       cancelRequest = cancel
 
@@ -114,7 +116,9 @@
       params.round = parseInt(params.round, 10)
       addDialogSubmitElement.setAttribute('disabled', 'disabled')
 
-      let [promise, cancel] = utils.request('POST', '/api/add', Object.assign({}, params, { token: VARS.token, sheetId: VARS.sheetId }))
+      let result = utils.request('POST', '/api/add', Object.assign({}, params, { token: VARS.token, sheetId: VARS.sheetId }))
+      let promise = result[0]
+      let cancel = result[1]
 
       cancelRequest = cancel
 
