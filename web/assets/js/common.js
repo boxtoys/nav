@@ -20,7 +20,7 @@
           if (this.status >= 200 && this.status < 300) {
             resolve(xhr.response ? JSON.parse(xhr.response) : '')
           } else {
-            reject(new Error(xhr.statusText))
+            reject(new Error(xhr.statusText || xhr.responseText))
           }
         }
   
