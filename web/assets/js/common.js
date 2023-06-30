@@ -10,7 +10,9 @@
       return document.querySelector(selector)
     },
     request: function(method, url, data) {
-      return new Promise(function(resolve, reject) {
+      let cancel = function() {}
+
+      return [new Promise(function(resolve, reject) {
         const xhr = new XMLHttpRequest()
   
         xhr.open(method, url, true)
@@ -28,8 +30,13 @@
           reject(new Error(xhr.statusText))
         }
 
+        cancel = function() {
+          xhr.abort()
+          reject(new Error('Request canceled'))
+        }
+
         xhr.send(data ?JSON.stringify(data) : null)
-      })
+      }), cancel]
     },
     toast: function(text) {
       const element = document.querySelector('#message')

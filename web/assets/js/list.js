@@ -5,17 +5,17 @@
 
   function getList() {
     const url = '/api/list?sheetId={sheetId}&token={token}'.replace('{sheetId}', VARS.sheetId).replace('{token}', VARS.token)
+    let [promise] = utils.request('GET', url)
 
-    utils.request('GET', url)
-      .then(function (res) {
-        if (res.length !== 0) {
-          VARS.list = res
-          utils.$('.links').innerHTML = render(res)
-        }
-      })
-      .catch(function (err) {
-        utils.toast(err.message)
-      })
+    promise.then(function (res) {
+      if (res.length !== 0) {
+        VARS.list = res
+        utils.$('.links').innerHTML = render(res)
+      }
+    })
+    .catch(function (err) {
+      utils.toast(err.message)
+    })
   }
 
   function render(data) {

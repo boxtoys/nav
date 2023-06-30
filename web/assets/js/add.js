@@ -1,5 +1,6 @@
 (function() {
   let step = 1
+  let cancelRequest = null
   let params = {
     link: '',
     name: '',
@@ -79,9 +80,13 @@
       addDialogSubmitElement.textContent = 'Parseing'
       addDialogSubmitElement.setAttribute('disabled', 'disabled')
 
-      return utils.request('POST', '/api/extract', { link: params.link, token: VARS.token })
-        .then(function (res) {
+      let [promise, cancel] = utils.request('POST', '/api/extract', { link: params.link, token: VARS.token })
+
+      cancelRequest = cancel
+
+      return promise.then(function (res) {
           step = 2
+          cancelRequest = null
           params.name = addDialogNameElement.value = res.name || ''
           params.icon = addDialogIconElement.value = res.icon || ''
           params.desc = addDialogDescriptionElement.value = res.desc || ''
@@ -98,6 +103,7 @@
           addDialogSubmitElement.removeAttribute('disabled')
         })
         .catch(function(err) {
+          cancelRequest = null
           utils.toast(err.message)
           addDialogSubmitElement.textContent = 'Parse'
           addDialogSubmitElement.removeAttribute('disabled')
@@ -108,8 +114,13 @@
       params.round = parseInt(params.round, 10)
       addDialogSubmitElement.setAttribute('disabled', 'disabled')
 
-      return utils.request('POST', '/api/add', Object.assign({}, params, { token: VARS.token, sheetId: VARS.sheetId }))
-        .then(function() {
+      let [promise, cancel] = utils.request('POST', '/api/add', Object.assign({}, params, { token: VARS.token, sheetId: VARS.sheetId }))
+
+      cancelRequest = cancel
+
+      return promise.then(function() {
+          cancelRequest = null
+
           render(params)
           VARS.list.push(params)
 
@@ -118,6 +129,7 @@
           addDialogSubmitElement.removeAttribute('disabled')
         })
         .catch(function(err) {
+          cancelRequest = null
           utils.toast(err.message)
           addDialogSubmitElement.removeAttribute('disabled')
         })
@@ -150,6 +162,11 @@
   }
 
   function reset() {
+    if (cancelRequest) {
+      cancelRequest()
+      cancelRequest = null
+    }
+    
     step = 1
     params = {
       link: '',
