@@ -1,4 +1,9 @@
 (function() {
+  const VARS = {
+    token: localStorage.getItem('NAV_REQUEST_TOKEN') || '',
+    sheetId: localStorage.getItem('NAV_REQUEST_SHEET_ID') || ''
+  }
+
   const utils = {
     $: function(selector) {
       return document.querySelector(selector)
@@ -35,5 +40,6 @@
     }
   }
 
+  window.VARS = VARS
   window.utils = utils
 })();
