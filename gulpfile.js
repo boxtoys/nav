@@ -6,7 +6,7 @@ const inlineSource = require('gulp-inline-source')
 function minify() {
   return gulp.src('web/index.html')
     .pipe(inlineSource({
-      compress: false
+      compress: true
     }))
     .pipe(htmlmin({
       minifyJS: true,
