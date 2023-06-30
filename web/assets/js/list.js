@@ -24,6 +24,10 @@
     data = normalize(data)
 
     return Object.keys(data).map(function (key) {
+      if (data[key].length === 0) {
+        return ''
+      }
+
       const categoryName = key !== 'nil' ? '<h3 title="'.concat(key, '">').concat(key, '</h3>') : ''
 
       const list = data[key].reduce(function (prev, curr) {
@@ -47,7 +51,7 @@
       prev[curr.category].push(curr)
 
       return prev
-    }, {})
+    }, { nil: [] })
   }
 
   window.refreshList = getList

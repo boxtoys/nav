@@ -118,7 +118,7 @@
   function render(data) {
     const linksElement = utils.$('.links')
     const tpl = document.querySelector('#listTemplate').textContent.trim()
-    const html = tpl.replace('{name}', data.name).replace('{icon}', data.icon).replace('{desc}', data.desc).replace('{link}', data.link.replace(/(https?:\/\/)/g, '')).replace('{url}', data.link).replace('{round}', curr.round === 1 ? 'round' : '')
+    const html = tpl.replace('{name}', data.name).replace('{icon}', data.icon).replace('{desc}', data.desc).replace('{link}', data.link.replace(/(https?:\/\/)/g, '')).replace('{url}', data.link).replace('{round}', data.round === 1 ? 'round' : '')
 
     if (data.category) {
       let categoryElement = document.querySelector('h3[title='.concat(data.category, ']'))
