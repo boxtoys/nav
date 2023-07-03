@@ -50,6 +50,12 @@
     refreshSubmitElementState()
   })
 
+  addDialogLinkElement.addEventListener('keyup', function(e) {
+    if (e.keyCode === 13 && step === 1) {
+      addDialogSubmitElement.click()
+    }
+  })
+
   addDialogNameElement.addEventListener('input', function() {
     params.name = addDialogNameElement.value.trim()
 
