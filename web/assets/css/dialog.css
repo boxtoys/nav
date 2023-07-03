@@ -161,7 +161,7 @@
   height: 24px;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  cursor: default;
 }
 
 .dialog .field .link::before {
@@ -180,7 +180,8 @@
   fill: rgb(101, 109, 118);
 }
 
-.dialog .field .link:hover {
+.dialog .field .link[href]:hover {
+  cursor: pointer;
   border-radius: 3px;
   background-color: rgba(208,215,222,0.32);
 }

@@ -76,6 +76,8 @@
 
     if (VARS.sheetId) {
       settingDialogSheetIdLinkElement.setAttribute('href', 'https://docs.google.com/spreadsheets/d/' + VARS.sheetId)
+    } else {
+      settingDialogSheetIdLinkElement.removeAttribute('href')
     }
   }
 })();
