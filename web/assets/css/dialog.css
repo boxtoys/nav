@@ -44,7 +44,8 @@
 .dialog .box-header .title {
   flex: 1;
   padding: 16px 0 16px 16px;
-  font: 600 14px Poppins;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .dialog .box-header .close {
@@ -89,14 +90,16 @@
 .dialog .field .label {
   margin-bottom: 4px;
   color: #24292F;
-  font: 600 14px Poppins;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 .dialog .field input {
   width: 100%;
   padding: 5px 12px;
   color: rgb(31, 35, 40);
-  font: 14px/20px Poppins;
+  font-size: 14px;
+  line-height: 20px;
   outline: none;
   border-radius: 6px;
   background-color: #fff;
@@ -191,7 +194,9 @@
   padding: 6px 12px;
   border-radius: 6px;
   color: #fff;
-  font: 600 14px/20px Poppins;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
   background-color: #2DA44E;
   border: 1px solid rgba(27, 31, 36, 0.15);
   box-shadow: 0px 1px 0px 0px rgba(27, 31, 35, 0.10);

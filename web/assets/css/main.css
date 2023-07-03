@@ -43,7 +43,9 @@ main {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font: 600 24px/32px Poppins;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 32px;
 }
 
 .links ul {
@@ -114,7 +116,9 @@ main {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font: 700 16px/24px Poppins;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .links .info .link {
@@ -123,7 +127,9 @@ main {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font: 400 12px/18px Poppins;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 18px;
 }
 
 .links .description {
@@ -131,5 +137,7 @@ main {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font: 400 14px/20px Poppins;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
 }
