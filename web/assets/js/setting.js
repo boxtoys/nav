@@ -6,6 +6,7 @@
   const settingDialogSheetIdElement = utils.$('.J_setting_sheetId')
   const settingDialogBoxElement = utils.$('.J_setting_dialog .box')
   const settingDialogCloseElement = utils.$('.J_setting_dialog .close')
+  const settingDialogSheetIdLinkElement = utils.$('.J_setting_sheetId_link')
 
   settingElement.addEventListener('click', function() {
     settingDialogTokenElement.value = VARS.token
@@ -55,6 +56,12 @@
     settingDialogElement.classList.remove('open')
   })
 
+  settingDialogSheetIdLinkElement.addEventListener('click', function(e) {
+    if (!VARS.sheetId) {
+      e.preventDefault()
+    }
+  })
+
   function reset() {
     VARS.token = localStorage.getItem('NAV_REQUEST_TOKEN') || ''
     VARS.sheetId = localStorage.getItem('NAV_REQUEST_SHEET_ID') || ''
@@ -65,6 +72,10 @@
       settingDialogSubmitElement.removeAttribute('disabled')
     } else {
       settingDialogSubmitElement.setAttribute('disabled', 'disabled')
+    }
+
+    if (VARS.sheetId) {
+      settingDialogSheetIdLinkElement.setAttribute('href', 'https://docs.google.com/spreadsheets/d/' + VARS.sheetId)
     }
   }
 })();
