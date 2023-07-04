@@ -1,6 +1,15 @@
 {
   "headers": [
     {
+      "source": "/sw.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
       "source": "/api/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
@@ -12,6 +21,7 @@
   ],
   "rewrites": [
     { "source": "/dev", "destination": "/web/index.html" },
+    { "source": "/sw.js", "destination": "/web/sw.js" },
     { "source": "/", "destination": "/web/index.min.html" },
     { "source": "/assets/(.*)", "destination": "/web/assets/$1" }
   ]

@@ -1,4 +1,12 @@
 (function() {
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').then(function() {
+      console.log('ServiceWorker registration success')
+    }).catch(function(err) {
+      console.log('ServiceWorker registration failed: ', err)
+    })
+  }
+
   const VARS = {
     list: [],
     token: localStorage.getItem('NAV_REQUEST_TOKEN') || '',
