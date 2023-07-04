@@ -132,7 +132,12 @@
       if (index === -1) {
         prev.add.push(curr)
       } else if (JSON.stringify(curr) !== JSON.stringify(cacheData[index])) {
-        prev.patch.push(curr)
+        if (curr.category !== cacheData[index].category) {
+          prev.add.push(curr)
+          prev.del.push(cacheData[index])
+        } else {
+          prev.patch.push(curr)
+        }
       }
 
       return prev
@@ -142,11 +147,11 @@
       patch: []
     })
 
-    result.del = cacheData.filter(function (item) {
+    result.del = result.del.concat(cacheData.filter(function (item) {
       return newData.findIndex(function (curr) {
         return curr.link === item.link
       }) === -1
-    })
+    }))
 
     return result
   }
