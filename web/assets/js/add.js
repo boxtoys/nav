@@ -21,6 +21,8 @@
   const addDialogCloseElement = utils.$('.J_add_dialog .close')
   const addDialogIconRoundElement = utils.$('.J_add_icon_round')
   const addDialogDescriptionElement = utils.$('.J_add_description')
+  const addDialogIconMutipleElement = utils.$('.J_add_icon_mutiple')
+  const addDialogIconMutipleDropdownElement = utils.$('.J_add_icon_mutiple_dropdown')
 
   addElement.addEventListener('click', function() {
     addDialogElement.classList.add('open')
@@ -30,6 +32,10 @@
 
   addDialogBoxElement.addEventListener('click', function(e) {
     e.stopPropagation()
+
+    if (addDialogBoxElement.contains(e.target) && addDialogIconMutipleDropdownElement.classList.contains('show')) {
+      addDialogIconMutipleDropdownElement.classList.remove('show')
+    }
   })
 
   addDialogCloseElement.addEventListener('click', function() {
@@ -81,6 +87,30 @@
     params.round = addDialogIconRoundElement.value
   })
 
+  addDialogIconMutipleElement.addEventListener('click', function(e) {
+    e.stopPropagation()
+
+    addDialogIconMutipleDropdownElement.scrollTop = 0
+    addDialogIconMutipleDropdownElement.classList.toggle('show')
+  })
+
+  addDialogIconMutipleDropdownElement.addEventListener('click', function(e) {
+    const target = e.target
+
+    if (target.nodeName.toUpperCase() === 'LI') {
+      e.stopPropagation()
+
+      params.icon = addDialogIconElement.value = target.dataset.link
+
+      addDialogIconMutipleDropdownElement.querySelectorAll('.tick').forEach(function(el) {
+        el.classList.remove('active')
+      })
+
+      target.querySelector('.tick').classList.add('active')
+      addDialogIconMutipleDropdownElement.classList.remove('show')
+    }
+  })
+
   addDialogSubmitElement.addEventListener('click', function() {
     if (step === 1 && params.link) {
       addDialogSubmitElement.textContent = 'Parseing'
@@ -96,8 +126,16 @@
           step = 2
           cancelRequest = null
           params.name = addDialogNameElement.value = res.name || ''
-          params.icon = addDialogIconElement.value = res.icon || ''
           params.desc = addDialogDescriptionElement.value = res.desc || ''
+
+          if (res.icon && typeof res.icon === 'string') {
+            params.icon = addDialogIconElement.value = res.icon
+          } else if (res.icon && Array.isArray(res.icon)) {
+            params.icon = addDialogIconElement.value = res.icon[0]
+            addDialogIconMutipleElement.classList.remove('hidden')
+            addDialogIconElement.classList.add('icon')
+            renderIconOptions(res.icon)
+          }
 
           addDialogElement.querySelector('.box-body').classList.remove('off')
 
@@ -171,6 +209,13 @@
     }
   }
 
+  function renderIconOptions(data) {
+    const tpl = document.querySelector('#iconOptionTemplate').textContent.trim()
+    const html = data.map((link, index) => tpl.replaceAll('{link}', link).replace('{active}', index === 0 ? 'active' : ''))
+
+    addDialogIconMutipleDropdownElement.querySelector('ul').innerHTML = html.join('')
+  }
+
   function reset() {
     if (cancelRequest) {
       cancelRequest()
@@ -195,10 +240,11 @@
     addDialogSubmitElement.textContent = 'Parse'
     addDialogNameElement.parentElement.classList.add('hidden')
     addDialogIconElement.parentElement.classList.add('hidden')
+    addDialogIconMutipleDropdownElement.classList.remove('show')
     addDialogCategoryElement.parentElement.classList.add('hidden')
     addDialogIconRoundElement.parentElement.classList.add('hidden')
-    addDialogDescriptionElement.parentElement.classList.add('hidden')
     addDialogElement.querySelector('.box-body').classList.add('off')
+    addDialogDescriptionElement.parentElement.classList.add('hidden')
   }
 
   function refreshSubmitElementState() {

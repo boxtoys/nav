@@ -108,6 +108,14 @@
         <div class="field hidden">
           <div class="label">Icon</div>
           <input type="text" class="J_add_icon">
+          <div class="icons J_add_icon_mutiple hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 64 64">
+              <path d="M61.5 32a1.51 1.51 0 0 0-.78-1.32l-9.15-5 9.15-5a1.5 1.5 0 0 0 0-2.63l-28-15.35a1.53 1.53 0 0 0-1.44 0L3.28 18a1.5 1.5 0 0 0 0 2.63l9.15 5-9.15 5a1.51 1.51 0 0 0 0 2.64l9.15 5-9.15 5a1.51 1.51 0 0 0 0 2.64l28 15.34a1.53 1.53 0 0 0 1.44 0l28-15.25a1.51 1.51 0 0 0 0-2.64l-9.15-5 9.15-5A1.51 1.51 0 0 0 61.5 32zM32 5.71l24.88 13.63L32 33 7.12 19.34zm24.88 38.95L32 58.29 7.12 44.66 15.55 40l15.73 8.62a1.53 1.53 0 0 0 1.44 0L48.45 40zM32 45.63 7.12 32l8.43-4.62L31.28 36a1.46 1.46 0 0 0 1.44 0l15.73-8.62L56.88 32z" data-name="Layer 45" data-original="#000000"/>
+            </svg>
+          </div>
+          <div class="dropdown J_add_icon_mutiple_dropdown">
+            <ul></ul>
+          </div>
         </div>
         <div class="field hidden">
           <div class="label">Description</div>
@@ -145,6 +153,19 @@
         </section>
         <p class="description">{desc}</p>
       </a>
+    </li>
+  </script>
+  <script type="text/template" id="iconOptionTemplate">
+    <li data-link="{link}"">
+      <span class="tick {active}">
+        <svg viewBox="0 0 16 16">
+          <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/>
+        </svg>
+      </span>
+      <span class="icon">
+        <img src="{link}" />
+      </span>
+      <div class="text">{link}</div>
     </li>
   </script>
   <script>(function(){"use strict";function $(){}const ct=e=>e;function I(e){return e()}function K(){return Object.create(null)}function C(e){e.forEach(I)}function A(e){return typeof e=="function"}function ft(e,t){return e!=e?t==t:e!==t||e&&typeof e=="object"||typeof e=="function"}function ut(e){return Object.keys(e).length===0}const Q=typeof window<"u";let at=Q?()=>window.performance.now():()=>Date.now(),P=Q?e=>requestAnimationFrame(e):$;const L=new Set;function W(e){L.forEach(t=>{t.c(e)||(L.delete(t),t.f())}),L.size!==0&&P(W)}function dt(e){let t;return L.size===0&&P(W),{promise:new Promise(n=>{L.add(t={c:e,f:n})}),abort(){L.delete(t)}}}function p(e,t){e.appendChild(t)}function X(e){if(!e)return document;const t=e.getRootNode?e.getRootNode():e.ownerDocument;return t&&t.host?t:e.ownerDocument}function ht(e){const t=z("style");return pt(X(e),t),t.sheet}function pt(e,t){return p(e.head||e,t),t.sheet}function v(e,t,n){e.insertBefore(t,n||null)}function b(e){e.parentNode&&e.parentNode.removeChild(e)}function z(e){return document.createElement(e)}function g(e){return document.createElementNS("http://www.w3.org/2000/svg",e)}function Y(e){return document.createTextNode(e)}function gt(){return Y(" ")}function mt(){return Y("")}function c(e,t,n){n==null?e.removeAttribute(t):e.getAttribute(t)!==n&&e.setAttribute(t,n)}function _t(e){return Array.from(e.childNodes)}function xt(e,t,{bubbles:n=!1,cancelable:i=!1}={}){const r=document.createEvent("CustomEvent");return r.initCustomEvent(e,n,i,t),r}function wt(e){const t={};for(const n of e)t[n.name]=n.value;return t}const T=new Map;let B=0;function bt(e){let t=5381,n=e.length;for(;n--;)t=(t<<5)-t^e.charCodeAt(n);return t>>>0}function yt(e,t){const n={stylesheet:ht(t),rules:{}};return T.set(e,n),n}function tt(e,t,n,i,r,o,s,l=0){const d=16.666/i;let u=`{

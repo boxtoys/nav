@@ -111,6 +111,10 @@
   padding: 5px 30px 5px 12px;
 }
 
+.dialog .field input.icon {
+  padding: 5px 30px 5px 12px;
+}
+
 .dialog .field input:focus-visible {
   border-color: rgb(9, 105, 218);
   box-shadow: inset 0 0 0 1px rgb(9, 105, 218);
@@ -184,6 +188,134 @@
   cursor: pointer;
   border-radius: 3px;
   background-color: rgba(208,215,222,0.32);
+}
+
+.dialog .field .icons {
+  display: flex;
+  position: absolute;
+  top: 28px;
+  right: 3px;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+.dialog .field .icons.hidden {
+  display: none;
+}
+
+.dialog .field .icons::before {
+  position: absolute;
+  content: '';
+  top: 4px;
+  left: -1px;
+  width: 1px;
+  height: 16px;
+  background-color: rgb(208, 215, 222);
+}
+
+.dialog .field .icons svg {
+  width: 14px;
+  height: 14px;
+  fill: rgb(101, 109, 118);
+}
+
+.dialog .field .icons:hover {
+  cursor: pointer;
+  border-radius: 3px;
+  background-color: rgba(208,215,222,0.32);
+}
+
+.dialog .field .dropdown {
+  position: absolute;
+  width: 100%;
+  max-height: 110px;
+  top: 55px;
+  left: 0;
+  height: 0;
+  z-index: 1;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: rgba(31, 35, 40, 0.12) 0px 1px 3px, rgba(66, 74, 83, 0.12) 0px 8px 24px;
+  transition: all .2s ease;
+  overflow-x: hidden;
+}
+
+.dialog .field .dropdown.show {
+  height: auto;
+  top: 60px;
+}
+
+.dialog .field .dropdown ul {
+  padding: 8px 0;
+}
+
+.dialog .field .dropdown li {
+  display: flex;
+  padding: 6px 8px;
+  color: rgb(31, 35, 40);
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 33.333ms linear 0s;
+}
+
+.dialog .field .dropdown li:hover {
+  color: rgb(31, 35, 40);
+  background-color: rgba(208, 215, 222, 0.32);
+}
+
+.dialog .field .dropdown .tick {
+  display: flex;
+  width: 16px;
+  height: 20px;
+  min-width: 16px;
+  margin-right: 8px;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.dialog .field .dropdown .tick svg {
+  display: none;
+  width: 16px;
+  height: 16px;
+  fill: rgb(31, 35, 40);
+}
+
+.dialog .field .dropdown .tick.active svg {
+  display: block;
+}
+
+.dialog .field .dropdown .icon {
+  display: flex;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  margin-right: 8px;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.dialog .field .dropdown .icon img {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.dialog .field .dropdown .text {
+  font-size: 14px;
+  line-height: 20px;
+  color: rgb(31, 35, 40);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
 }
 
 .dialog .box-footer {

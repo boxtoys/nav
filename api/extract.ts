@@ -33,8 +33,8 @@ export default async (request: VercelRequest, response: VercelResponse) => {
 function getLinkMetadata(link: string) {
   return new Promise<{
     name: string
-    icon?: string
     desc?: string
+    icon?: string | string[]
   }>((resolve, reject) => {
     const client = link.startsWith('https') ? https : http
 
@@ -47,7 +47,7 @@ function getLinkMetadata(link: string) {
   
       resp.on('data', (chunk) => data += chunk)
       resp.on('end', () => {
-        let icon = ''
+        let icon: string | string[] = ''
         const matches = data.match(/<link[^>]+rel=["'](?:shortcut )?icon["'][^>]*>/gi)
 
         if (matches && matches.length > 0) {
@@ -57,11 +57,13 @@ function getLinkMetadata(link: string) {
             return urlMatch && urlMatch.length >= 2 ? urlMatch[1] : ''
           })
 
-          if (icons[0]) {
+          if (icons.length === 1) {
             icon = new URL(icons[0], link).href
+          } else {
+            icon = icons.map(item => new URL(item, link).href)
           }
         }
-        
+
         resolve({
           icon,
           name: data.match(/<title>(.*?)<\/title>/)?.[1] || '',
