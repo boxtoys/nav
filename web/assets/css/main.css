@@ -9,10 +9,14 @@ main {
 }
 
 .search {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   max-width: 614px;
   height: 50px;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: 0 auto 69px;
   padding: 0 12px 0 15px;
   border-radius: 6px;
@@ -27,7 +31,9 @@ main {
 }
 
 .search input {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   color: #000;
   font-size: 14px;
   font-weight: 400;
@@ -49,6 +55,7 @@ main {
 }
 
 .links ul {
+  display: -ms-grid;
   display: grid;
   gap: 24px;
   grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
@@ -56,8 +63,13 @@ main {
 }
 
 .links ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   height: 112px;
   padding: 16px 16px 24px 16px;
   cursor: pointer;
@@ -73,6 +85,8 @@ main {
 }
 
 .links .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   margin-bottom: 8px;
 }
@@ -93,9 +107,15 @@ main {
 }
 
 .links .logo.round {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   border-radius: 22px;
   border: 1px solid #EAEAEA;
 }
@@ -106,10 +126,17 @@ main {
 }
 
 .links .info {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   overflow: hidden;
-  flex-direction: column;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .links .info .name {
@@ -123,7 +150,9 @@ main {
 }
 
 .links .info .link {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   color: #000;
   overflow: hidden;
   white-space: nowrap;

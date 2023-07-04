@@ -1,10 +1,16 @@
 header {
   position: sticky;
   top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 64px;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   z-index: 10001;
   background-color: rgba(255, 255, 255, 0.8);
   box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.1);
@@ -18,10 +24,13 @@ header::before {
   content: '';
   -webkit-backdrop-filter: saturate(180%) blur(5px);
   backdrop-filter: saturate(180%) blur(5px);
-  backface-visibility: hidden;
-  perspective: 1000;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-perspective: 1000;
+          perspective: 1000;
   z-index: -1;
-  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
 }
 
 header .logo {
@@ -31,21 +40,31 @@ header .logo {
 }
 
 header .opers {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 64px;
   padding-right: 10px;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 header .opers .setting,
 header .opers .add {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 40px;
   height: 40px;
   margin-right: 12px;
   border-radius: 50%;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   cursor: pointer;
   transition: background-color 0.15s ease;
 }
