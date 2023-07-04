@@ -6,6 +6,7 @@ A small navigation website.
 
 - Data storage based on Google Sheets.
 - API based on Vercel Serverless Functions.
+- Data cache use LocalStorage & ServiceWorker.
 
 ## Deploy
 

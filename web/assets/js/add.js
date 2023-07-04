@@ -183,6 +183,10 @@
 
           render(params)
           VARS.list.push(params)
+          
+          if (localStorage.getItem('NAV_REQUEST_LIST')) {
+            localStorage.setItem('NAV_REQUEST_LIST', JSON.stringify(VARS.list))
+          }
 
           reset()
           addDialogElement.classList.remove('open')
