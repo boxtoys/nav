@@ -8,8 +8,8 @@ self.addEventListener('fetch', function (event) {
           fetch(event.request).then(function (responseFromNetwork) {
             caches.open('v1').then(function (cache) {
               cache.put(event.request, responseFromNetwork.clone())
+              resolve(responseFromNetwork)
             })
-            resolve(responseFromNetwork)
           }).catch((error) => {
             reject(error)
           })
