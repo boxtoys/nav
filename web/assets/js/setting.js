@@ -59,6 +59,8 @@
   settingDialogSheetIdLinkElement.addEventListener('click', function(e) {
     if (!VARS.sheetId) {
       e.preventDefault()
+    } else {
+      settingDialogCloseElement.click()
     }
   })
 

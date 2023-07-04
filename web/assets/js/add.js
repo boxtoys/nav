@@ -73,6 +73,18 @@
 
     refreshSubmitElementState()
     refreshIconElementState()
+
+    if (addDialogIconElement.classList.contains('icon')) {
+      addDialogIconMutipleDropdownElement.querySelectorAll('.tick').forEach(function(el) {
+        el.classList.remove('active')
+      })
+
+      const itemElement = addDialogIconMutipleDropdownElement.querySelector('li[data-link="'.concat(params.icon, '"]'))
+
+      if (itemElement) {
+        itemElement.querySelector('.tick').classList.add('active')
+      }
+    }
   })
 
   addDialogDescriptionElement.addEventListener('input', function() {
