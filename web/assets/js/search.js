@@ -6,6 +6,10 @@
     searchElement.focus()
   })
 
+  document.addEventListener('DOMContentLoaded', function() {
+    searchElement.focus()
+  })
+
   searchElement.addEventListener('keypress', function(e) {
     const value = searchElement.value.trim()
 
