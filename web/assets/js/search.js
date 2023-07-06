@@ -3,6 +3,7 @@
 
   document.addEventListener('visibilitychange', function() {
     searchElement.value = ''
+    searchElement.focus()
   })
 
   searchElement.addEventListener('keypress', function(e) {
