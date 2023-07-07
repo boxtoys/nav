@@ -52,7 +52,7 @@ const result = await axios.get(`${domain}/api/list`, {
   params: {
     token: "74e1dcd881627ee5efa73340324ee47f",
     sheetId: "f82452e3e4979a0a02d2a1ca6c7d74e41959fd6212d2",
-  },
+  }
 });
 
 console.log(result); // output log: [{ name: 'example', icon: 'https://example.com/logo.png', desc: 'this is demo', link: 'https://example.com', category: 'demo' })]
@@ -107,9 +107,6 @@ const result = await axios
       sheetId: "f82452e3e4979a0a02d2a1ca6c7d74e41959fd6212d2"
     }
   )
-  .then((res) => {
-    console.log(res.data);
-  });
 
 console.log(result); // response status: 200
 ```
@@ -142,9 +139,6 @@ const result = await axios
       sheetId: "f82452e3e4979a0a02d2a1ca6c7d74e41959fd6212d2"
     }
   )
-  .then((res) => {
-    console.log(res.data);
-  });
 
 console.log(result); // response status: 200
 ```
