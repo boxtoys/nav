@@ -69,9 +69,10 @@ Parse the metadata of the website.
 
 ```js
 const result = await axios.post(
-  `${domain}/api/extract?token=74e1dcd881627ee5efa73340324ee47f`,
+  `${domain}/api/extract`,
   {
-    link: "https://www.baidu.com",
+    link: "https://www.google.com",
+    token: "74e1dcd881627ee5efa73340324ee47f"
   }
 );
 
@@ -95,13 +96,15 @@ Add data to data storage.
 ```js
 const result = await axios
   .post(
-    `${domain}/api/add?token=74e1dcd881627ee5efa73340324ee47f&sheetId=f82452e3e4979a0a02d2a1ca6c7d74e41959fd6212d2`,
+    `${domain}/api/add`,
     {
       name: "Example",
       icon: "https://example.com/logo.png",
       desc: "This is demo",
       link: "https://example.com",
       category: "demo",
+      token: "74e1dcd881627ee5efa73340324ee47f",
+      sheetId: "f82452e3e4979a0a02d2a1ca6c7d74e41959fd6212d2"
     }
   )
   .then((res) => {
@@ -109,6 +112,64 @@ const result = await axios
   });
 
 console.log(result); // response status: 200
+```
+
+### {domain}/api/update ![post](https://img.shields.io/badge/HTTP-POST-brightgreen)
+
+Update data to data storage.
+
+| Parameter | Type   | Description              | isRequired? |
+| --------- | ------ | ------------------------ | ----------- |
+| sheetId   | String | sheetId of Google Sheets | required    |
+| token     | String | access token             | required    |
+| link      | String | website link             | required    |
+| name      | String | website name             | required    |
+| icon      | String | website icon             | required    |
+| desc      | String | website description      | optional    |
+| category  | String | website category         | optional    |
+
+```js
+const result = await axios
+  .post(
+    `${domain}/api/update`,
+    {
+      name: "Example",
+      icon: "https://example.com/logo.png",
+      desc: "This is demo",
+      link: "https://example.com",
+      category: "demo",
+      token: "74e1dcd881627ee5efa73340324ee47f",
+      sheetId: "f82452e3e4979a0a02d2a1ca6c7d74e41959fd6212d2"
+    }
+  )
+  .then((res) => {
+    console.log(res.data);
+  });
+
+console.log(result); // response status: 200
+```
+
+### {domain}/api/delete ![post](https://img.shields.io/badge/HTTP-POST-brightgreen)
+
+Delete data from data storage.
+
+| Parameter | Type   | Description              | isRequired? |
+| --------- | ------ | ------------------------ | ----------- |
+| link      | String | website link             | required    |
+| token     | String | access token             | required    |
+| sheetId   | String | sheetId of Google Sheets | required    |
+
+```js
+const result = await axios.post(
+  `${domain}/api/delete`,
+  {
+    link: "https://www.google.com",
+    token: "74e1dcd881627ee5efa73340324ee47f",
+    sheetId: "f82452e3e4979a0a02d2a1ca6c7d74e41959fd6212d2",
+  }
+);
+
+console.log(result); // output log: { name: 'example', icon: 'https://example.com/logo.png', desc: 'this is demo' }
 ```
 
 ## Help Document
