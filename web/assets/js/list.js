@@ -49,7 +49,7 @@
       const categoryName = key !== 'nil' ? '<h3 title="'.concat(key, '">').concat(key, '</h3>') : ''
 
       const list = data[key].reduce(function (prev, curr) {
-        return prev + tpl.replace('{name}', curr.name).replace('{icon}', curr.icon).replace('{desc}', curr.desc).replace('{link}', curr.link.replace(/(https?:\/\/)/g, '')).replace('{url}', curr.link).replace('{round}', curr.round === 1 ? 'round' : '')
+        return prev + tpl.replace('{name}', curr.name).replace('{icon}', curr.icon).replace('{desc}', curr.desc).replace('{link}', curr.link.replace(/(https?:\/\/)/g, '')).replaceAll('{url}', curr.link).replace('{round}', curr.round === 1 ? 'round' : '')
       }, '')
 
       return categoryName + '<ul>' + list + '</ul>'
@@ -65,6 +65,12 @@
           element.querySelector('.name').innerText = item.name
           element.querySelector('.description').innerText = item.desc
           element.querySelector('.logo img').setAttribute('src', item.icon)
+
+          if(item.round === 1) {
+            element.querySelector('.logo').classList.add('round')
+          } else {
+            element.querySelector('.logo').classList.remove('round')
+          }
         }
       })
     }
@@ -110,7 +116,7 @@
   function normalize(data) {
     return data.reduce(function (prev, curr) {
       if (!curr.category) {
-        curr.category = 'nil'
+        prev.nil.push(curr)
       }
 
       if (!prev[curr.category]) {

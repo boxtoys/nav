@@ -26,6 +26,7 @@ export default async (request: VercelRequest, response: VercelResponse) => {
     })
 
     if (result.data.values) {
+      result.data.values = result.data.values.filter(row => row.length)
       response.status(200).send(result.data.values.map(row => ({ name: row[0], icon: row[1], desc: row[2], link: row[3], category: row[4], round: row[5] ? parseInt(row[5], 10) : undefined })))
     } else {
       response.status(200).send([])

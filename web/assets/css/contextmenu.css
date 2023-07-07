@@ -1,0 +1,67 @@
+.contextmenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  padding: 8px 0;
+  user-select: none;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: rgba(31, 35, 40, 0.12) 0px 1px 3px, rgba(66, 74, 83, 0.12) 0px 8px 24px;
+}
+
+.contextmenu.hidden {
+  display: none;
+}
+
+.contextmenu .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 6px 8px;
+  color: rgb(31, 35, 40);
+  font-size: 14px;
+  line-height: 20px;
+  margin: 0 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 33.333ms linear 0s;
+}
+
+.contextmenu .item:hover {
+  color: rgb(31, 35, 40);
+  background-color: rgba(208, 215, 222, 0.32);
+}
+
+.contextmenu .item .icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 16px;
+  height: 20px;
+  min-width: 16px;
+  margin-right: 10px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  pointer-events: none;
+}
+
+.contextmenu .item .icon svg {
+  width: 16px;
+  height: 16px;
+  fill: rgb(31, 35, 40);
+}
+
+.contextmenu .item p {
+  font-size: 14px;
+  line-height: 20px;
+  color: rgb(31, 35, 40);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+}

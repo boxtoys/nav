@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="/assets/css/header.css" inline>
   <link rel="stylesheet" href="/assets/css/main.css" inline>
   <link rel="stylesheet" href="/assets/css/dialog.css" inline>
+  <link rel="stylesheet" href="/assets/css/contextmenu.css" inline>
 </head>
 <body>
   <header>
@@ -138,9 +139,71 @@
       </section>
     </div>
   </div>
+  <div class="dialog J_update_dialog">
+    <div class="box">
+      <section class="box-header">
+        <div class="title">Update Website</div>
+        <div class="close">
+          <svg height="16" viewBox="0 0 16 16" version="1.1" width="16">
+            <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
+          </svg>
+        </div>
+      </section>
+      <section class="box-body add">
+        <div class="field">
+          <div class="label">Link</div>
+          <input type="text" class="J_update_link" disabled>
+        </div>
+        <div class="field">
+          <div class="label">Name</div>
+          <input type="text" class="J_update_name">
+        </div>
+        <div class="field">
+          <div class="label">Icon</div>
+          <input type="text" class="J_update_icon">
+        </div>
+        <div class="field">
+          <div class="label">Description</div>
+          <input type="text" class="J_update_description">
+        </div>
+        <div class="field">
+          <div class="label">Category</div>
+          <input type="text" class="J_update_category">
+        </div>
+        <div class="field">
+          <div class="label">Icon round</div>
+          <select class="J_update_icon_round">
+            <option value="1">Yes</option>
+            <option value="0" selected>No</option>
+          </select>
+        </div>
+      </section>
+      <section class="box-footer">
+        <button type="submit" class="J_update_submit">Update</button>
+      </section>
+    </div>
+  </div>
+  <div class="contextmenu J_contextmenu hidden">
+    <div class="item J_contextmenu_change">
+      <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 128 128">
+          <path d="M120 60v40c0 11.027-8.973 20-20 20H28c-11.027 0-20-8.973-20-20V28C8 16.973 16.973 8 28 8h40a4 4 0 0 1 0 8H28c-6.617 0-12 5.383-12 12v72c0 6.617 5.383 12 12 12h72c6.617 0 12-5.383 12-12V60a4 4 0 0 1 8 0zm-82.828 5.172 56-56a3.997 3.997 0 0 1 5.656 0l20 20a3.997 3.997 0 0 1 0 5.656l-56 56A4 4 0 0 1 60 92H40a4 4 0 0 1-4-4V68a4 4 0 0 1 1.172-2.828zM89.656 24 104 38.344 110.344 32 96 17.656zM44 84h14.344l40-40L84 29.656l-40 40z" data-original="#000000"/>
+        </svg>        
+      </div>
+      <p>Change Information</p>
+    </div>
+    <div class="item J_contextmenu_delete">
+      <div class="icon">
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 32 32">
+          <path d="M27 6.25h-5.25V5A2.75 2.75 0 0 0 19 2.25h-6A2.75 2.75 0 0 0 10.25 5v1.25H5a.75.75 0 0 0 0 1.5h.53L7.1 27.22a2.77 2.77 0 0 0 2.74 2.53h12.32a2.77 2.77 0 0 0 2.74-2.53l1.57-19.47H27a.75.75 0 0 0 0-1.5ZM11.75 5A1.25 1.25 0 0 1 13 3.75h6A1.25 1.25 0 0 1 20.25 5v1.25h-8.5ZM23.4 27.1a1.26 1.26 0 0 1-1.25 1.15H9.84A1.26 1.26 0 0 1 8.6 27.1L7 7.75h18ZM20.75 13v10a.75.75 0 0 1-1.5 0V13a.75.75 0 0 1 1.5 0Zm-4 0v10a.75.75 0 0 1-1.5 0V13a.75.75 0 0 1 1.5 0Zm-4 0v10a.75.75 0 0 1-1.5 0V13a.75.75 0 0 1 1.5 0Z" data-original="#000000"/>
+        </svg>        
+      </div>
+      <p>Delete This Website</p>
+    </div>
+  </div>
   <wc-message id="message"></wc-message>
   <script type="text/template" id="listTemplate">
-    <li>
+    <li data-id="{url}">
       <a href="{url}" target="_blank">
         <section class="content">
           <div class="logo {round}">
@@ -179,5 +242,6 @@
   <script src="/assets/js/search.js" inline></script>
   <script src="/assets/js/setting.js" inline></script>
   <script src="/assets/js/add.js" inline></script>
+  <script src="/assets/js/contextmenu.js" inline></script>
 </body>
 </html>
