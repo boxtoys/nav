@@ -166,7 +166,7 @@ const result = await axios.post(
 console.log(result); // output log: { name: 'example', icon: 'https://example.com/logo.png', desc: 'this is demo' }
 ```
 
-## Help Document
+## Related Documentation
 
 [Vercel functions using environment variables](https://vercel.com/docs/concepts/functions/serverless-functions/quickstart#using-environment-variables)
 
