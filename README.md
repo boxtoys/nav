@@ -2,6 +2,8 @@
 
 A small navigation website.
 
+![banner](https://github.com/boxtoys/nav/assets/4360480/40d92e17-7d58-4c89-826a-e655341da93a)
+
 ## Features
 
 - Data storage based on Google Sheets.
@@ -12,7 +14,7 @@ A small navigation website.
 
 1. Fork this project.
 2. Create a new project in vercel dashboard and connect to your project.
-3. Create Google Cloud platform credentials keyFile & extract `client_email`, `private_key` field.
+3. Create Google Cloud platform credentials keyFile & extract `client_email`, `private_key` field.  set sheet name to `Sheet1`.
 4. Set environment variables in the project dashboard.
 
 ## ENV
